@@ -67,25 +67,33 @@ export default defineComponent({
     background: linear-gradient(132.62deg, #e49331, #a10000);
     clip-path: circle(20% at 20% 100px);
     z-index: -1;
+
+      @media(max-width: 910px) {
+        clip-path: circle(10% at 20% 100px);
+      }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(139.66deg, #070566 12.23%, #a137f1 85.99%);
-    clip-path: circle(20% at 80% 400px);
-    z-index: -1;
-  }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(139.66deg, #070566 12.23%, #a137f1 85.99%);
+      clip-path: circle(20% at 80% 400px);
+      z-index: -1;
+
+        @media(max-width: 910px) {
+          clip-path: circle(10% at 80% 400px);
+        }
+    }
 
     .card {
       max-width: 832px;
       width: 100%;
       height: 392px;
-      margin: 0 42px 216px;
+      margin: 0 42px 116px;
       gap: 3rem;
 
       background-color: rgba(34, 22, 49, 0.85);
@@ -96,41 +104,72 @@ export default defineComponent({
 
       transform: translateZ(20px);
 
-      img {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
+        img {
+          width: 250px;
+          height: 250px;
+          border-radius: 50%;
+        }
+
+        span {
+          h2 {
+            font-size: 2rem;
+            font-family: 'Poppins Bold';
+            color: #fff;
+            margin: 0;
+          }
+          
+          p {
+            font-size: 1.5rem;
+            font-family: 'Poppins SemiBold';
+            color: #fff;
+            opacity: 0.75;
+            margin: 0;
+          }
+
+          img {
+            width: 55px;
+            height: 55px;
+            border-radius: 0;
+          }
+
+          div {
+            margin: 1rem 0;
+            gap: 1.5rem;
+          }
       }
 
-      span {
-        h2 {
-          font-size: 2rem;
-          font-family: 'Poppins Bold';
-          color: #fff;
-          margin: 0;
-        }
-        
-        p {
-          font-size: 1.5rem;
-          font-family: 'Poppins SemiBold';
-          color: #fff;
-          opacity: 0.75;
-          margin: 0;
-        }
+      @media(max-width: 910px) {
+        transform: scale(0.7)
+      }
+
+      @media(max-width: 760px) {
+        transform: scale(1);
+        width: 70%;
+        height: max-content;
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 8px;
 
         img {
-          width: 55px;
-          height: 55px;
-          border-radius: 0;
+          width: 50vw;
+          height: 50vw;
         }
 
-        div {
-          margin: 1rem 0;
-          gap: 1.5rem;
+        span {
+          h2 {
+            font-size: 5vw;
+          }
+          
+          p {
+            font-size: 4vw;
+          }
+
+          img {
+            width: 6vw;
+          }
         }
       }
     }
-
   }
 
   .info {
@@ -147,7 +186,9 @@ export default defineComponent({
     }
 
     span {
-      width: 610px;
+      max-width: 626px;
+      width: 100%;
+      padding: 0 0.5rem;
     }
 
     h3 {
@@ -215,7 +256,7 @@ export default defineComponent({
     width: 100%;
     background: #27094E;
 
-    a {
+    a { 
       cursor: pointer;
       transition: 0.3s;
 
