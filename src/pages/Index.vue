@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page-container
-  section
-    .row.items-center.justify-center.card
+  section.column.items-center
+    .row.items-center.justify-center.card.no-wrap
         img(src="../assets/my-photo.png" alt="Pedro Ricardo")
         span
           h2 Pedro Ricardo
@@ -13,12 +13,12 @@ q-page-container
             img(src="../assets/github.svg" alt="github")
             img(src="../assets/figma.svg" alt="figma")
   section.info.column.items-center.justify-center
-    .row.items-center.justify-center
+    .row.items-center.justify-center.no-wrap.code
       span
         h3 Bem-vindo(a) ao meu mundo,
         p tento utilizar programação para automatizar funções para ajudar pessoas e negócios...
       q-icon.code(name="code")
-    .row.items-center.justify-center
+    .row.items-center.justify-center.no-wrap.book
       q-icon.book(name="auto_stories")
       span
         h3 Eu amo ensinar
@@ -65,7 +65,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     background: linear-gradient(132.62deg, #e49331, #a10000);
-    clip-path: circle(20% at 200px 100px);
+    clip-path: circle(20% at 20% 100px);
     z-index: -1;
   }
 
@@ -77,15 +77,15 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     background: linear-gradient(139.66deg, #070566 12.23%, #a137f1 85.99%);
-    clip-path: circle(20% at 1100px 400px);
+    clip-path: circle(20% at 80% 400px);
     z-index: -1;
   }
 
     .card {
       max-width: 832px;
-      height: 392px;
       width: 100%;
-      margin: 0 auto 216px;
+      height: 392px;
+      margin: 0 42px 216px;
       gap: 3rem;
 
       background-color: rgba(34, 22, 49, 0.85);
@@ -143,7 +143,7 @@ export default defineComponent({
       max-width: calc(832px -2rem);
       width: 100%;
       gap: 2rem;
-      margin: 46px auto;
+      margin: 32px auto 46px;
     }
 
     span {
@@ -167,15 +167,19 @@ export default defineComponent({
     }
 
     .code {
-      color: transparent;
-      background: linear-gradient(90deg, #27094E 25%, #CD0F0F 108.95%);
-      background-clip: text;
+      .q-icon {
+        color: transparent;
+        background: linear-gradient(90deg, #27094E 25%, #CD0F0F 108.95%);
+        background-clip: text;
+      }
     }
 
     .book {
-      color: transparent;
-      background: linear-gradient(268.06deg, #27094E -10%, #CD0F0F 140%);
-      background-clip: text;
+      .q-icon {
+        color: transparent;
+        background: linear-gradient(268.06deg, #27094E -10%, #CD0F0F 140%);
+        background-clip: text;
+      }
     }
     
     a {
@@ -191,6 +195,16 @@ export default defineComponent({
 
       &:hover {
         box-shadow: 6px 6px 23px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    @media(max-width: 870px) {
+      div {
+        flex-direction: column-reverse;
+      }
+
+      .book {
+        flex-direction: column;
       }
     }
   }
@@ -215,6 +229,7 @@ export default defineComponent({
       width: 100%;
       height: 100%;
       margin: 0 auto;
+      padding: 0 2rem;
     }
   }
 }
