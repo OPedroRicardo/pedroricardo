@@ -1,17 +1,21 @@
 <template lang="pug">
 q-layout
-  q-page
-    router-view
+  router-view
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
+export default ({
   name: 'MainLayout',
-  setup () {
-    return {
-    }
-  }
-})
+
+  data() {
+    return {};
+  },
+});
 </script>
+
+<style lang="scss" scoped>
+.q-layout {
+  height: max-content;
+  background-color: $dark;
+}
+</style>

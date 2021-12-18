@@ -1,277 +1,165 @@
 <template lang="pug">
-q-page-container
-  section.column.items-center
-    .row.items-center.justify-center.card.no-wrap
-        img(src="../assets/my-photo.png" alt="Pedro Ricardo")
-        span
-          h2 Pedro Ricardo
-          p Desenvolvedor Web Estagiário
-          p 17 anos
-          .row
-            img(src="../assets/vue.svg" alt="vue")
-            img(src="../assets/node.svg" alt="node")
-            img(src="../assets/github.svg" alt="github")
-            img(src="../assets/figma.svg" alt="figma")
-  section.info.column.items-center.justify-center
-    .row.items-center.justify-center.no-wrap.code
-      span
-        h3 Bem-vindo(a) ao meu mundo,
-        p tento utilizar programação para automatizar funções para ajudar pessoas e negócios...
-      q-icon.code(name="code")
-    .row.items-center.justify-center.no-wrap.book
-      q-icon.book(name="auto_stories")
-      span
-        h3 Eu amo ensinar
-        p e aprender para poder melhorar minha capacidade de programar...
-    a(href="https://www.buymeacoffee.com/pedroricardo" target="_blank")
-      q-btn(no-caps) Give me a coffee
-        img(src="../assets/coffee.svg")
-  footer
-    .row.justify-between.items-center
-      a(href="https://www.youtube.com/channel/UCKi6AjFHHuk52p8o9JoorHw" target="_blank" title="youtube")
-        img(src="../assets/youtube.svg" alt="youtube")
-      a(href="mailto:dev.pedroricardo@gmail.com" target="_blank" title="email")
-        img(src="../assets/gmail.svg" alt="gmail")
-      a(href="https://www.linkedin.com/in/pedro-ricardo-almeida-954444196/" target="_blank" title="linkedin")
-        img(src="../assets/linkedin.svg" alt="linkedin")
-      a(href="https://opedroricardo.medium.com/" target="_blank" title="medium")
-        img(src="../assets/medium.svg" alt="medium")
+q-header(class="row items-top justify-center bg-dark")
+  a(v-for="item in social" target="_blank" :href="item.link" :title="item.title").q-ma-md
+    img(:src="item.img" :alt="item.title")
+q-page-container(class="column items-center justify-between" style="height: 100vh")
+  .row.items-center.justify-center
+    .column.justify-center.about
+      about-me
+      .row.items-center.justify-start.techs
+        .q-mr-xl
+          h4 Utilizo no dia a dia
+          img(v-for="tech in techs" :src="tech.img" :title="tech.title" :alt="tech.title")
+        div
+          h4 Aprendendo
+          img(v-for="tech in learning" :src="tech.img" :title="tech.title" :alt="tech.title")
+    img(src="astronauta.svg" class="astronauta" alt="Um astronauta, dando uma ideia de que estamos explorando o espaço.")
+  .flex.flex-center
+    a(href="")
+      q-btn(label="Meus Freelas" color="primary" no-caps size="xl" class="q-ma-xl")
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import aboutMe from '../components/aboutMe.vue';
 
-export default defineComponent({
+export default ({
   name: 'PageIndex',
   data() {
     return {
-      
-    }
+      social: [
+        {
+          link: 'https://www.buymeacoffee.com/pedroricardo',
+          img: 'icons/social/buymeacoffee.svg',
+          title: 'Buy me a coffee'
+        },
+        {
+          link: 'https://github.com/OPedroRicardo',
+          img: 'icons/social/github.svg',
+          title: 'GitHub'
+        },
+        {
+          link: 'https://www.linkedin.com/in/opedroricardo/',
+          img: 'icons/social/linkedin.svg',
+          title: 'LinkedIn'
+        },
+      ],
+      techs: [
+        {
+          img: 'icons/techs/vue.svg',
+          title: 'Vue.js'
+        },
+        {
+          img: 'icons/techs/node.svg',
+          title: 'Node.js'
+        },
+        {
+          img: 'icons/techs/figma.svg',
+          title: 'Figma'
+        },
+      ],
+      learning: [
+        {
+          img: 'icons/techs/my-sql.svg',
+          title: 'My SQL'
+        },
+        {
+          img: 'icons/techs/python.svg',
+          title: 'Python'
+        },
+      ],
+    };
   },
-})
+  components: {
+    aboutMe,
+  }
+});
 </script>
 
 <style lang="scss" scoped>
-.q-page-container {
-  
-  section {
-    padding: 66px 0 0 0;
-    
-    &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(132.62deg, #e49331, #a10000);
-    clip-path: circle(20% at 20% 100px);
-    z-index: -1;
+a img {
+  transition: all 0.4s ease-in-out;
+  padding: 0.5rem;
 
-      @media(max-width: 910px) {
-        clip-path: circle(10% at 20% 100px);
+  &:hover {
+    opacity: 0.4;
+  }
+}
+.about {
+  width: 33%;
+  height: 90%;
+  margin: 0 10%;
+}
+
+h4 {
+  color: $secondary;
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: -4px;
+}
+
+.astronauta {
+  max-width: 577.96px;
+  width: 40%;
+  animation: astronaut 40s linear infinite;
+  z-index: 2;
+
+  @keyframes astronaut {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        transform: rotate(20deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
       }
   }
+}
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(139.66deg, #070566 12.23%, #a137f1 85.99%);
-      clip-path: circle(20% at 80% 400px);
-      z-index: -1;
+.techs {
+  img {
+    width: 60px;
+    margin: 1rem 1rem 1rem 0;
+    cursor: pointer;
 
-        @media(max-width: 910px) {
-          clip-path: circle(10% at 80% 400px);
-        }
+    &:hover {
+      animation: upper 0.8s linear infinite;
     }
 
-    .card {
-      max-width: 832px;
-      width: 100%;
-      height: 392px;
-      margin: 0 42px 116px;
-      gap: 3rem;
+    
 
-      background-color: rgba(34, 22, 49, 0.85);
-      border-radius: 1rem;
-      box-shadow: 22px 22px 46px rgba(0, 0, 0, 0.4), 
-      inset 8px 8px 24px -5px rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(22px);
-
-      transform: translateZ(20px);
-
-        img {
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
-        }
-
-        span {
-          h2 {
-            font-size: 2rem;
-            font-family: 'Poppins Bold';
-            color: #fff;
-            margin: 0;
-          }
-          
-          p {
-            font-size: 1.5rem;
-            font-family: 'Poppins SemiBold';
-            color: #fff;
-            opacity: 0.75;
-            margin: 0;
-          }
-
-          img {
-            width: 55px;
-            height: 55px;
-            border-radius: 0;
-          }
-
-          div {
-            margin: 1rem 0;
-            gap: 1.5rem;
-          }
+    @keyframes upper {
+      0% {
+        top: 0;
       }
 
-      @media(max-width: 910px) {
-        transform: scale(0.7)
+      50% {
+        position: relative;
+        top: -10px
       }
 
-      @media(max-width: 760px) {
-        transform: scale(1);
-        width: 70%;
-        height: max-content;
-        flex-direction: column;
-        padding: 2rem 0;
-        gap: 8px;
-
-        img {
-          width: 50vw;
-          height: 50vw;
-        }
-
-        span {
-          h2 {
-            font-size: 5vw;
-          }
-          
-          p {
-            font-size: 4vw;
-          }
-
-          img {
-            width: 6vw;
-          }
-        }
+      100% {
+        top: 0;
       }
     }
   }
+}
 
-  .info {
-    width: 100%;
-    padding: 0 1rem;
-    margin: 0;
-    color: #27094E;
-    
-    div {
-      max-width: calc(832px -2rem);
-      width: 100%;
-      gap: 2rem;
-      margin: 32px auto 46px;
-    }
-
-    span {
-      max-width: 626px;
-      width: 100%;
-      padding: 0 0.5rem;
-    }
-
-    h3 {
-      font-size: 2rem;
-      font-family: 'JetBrains ExtraBold';
-      margin: 0 0 1rem;
-    }
-
-    p {
-      font-size: 2rem;
-      font-family: 'JetBrains';
-      margin: 0;
-    }
-
-    .q-icon {
-      font-size: 190px;
-    }
-
-    .code {
-      .q-icon {
-        color: transparent;
-        background: linear-gradient(90deg, #27094E 25%, #CD0F0F 108.95%);
-        background-clip: text;
-      }
-    }
-
-    .book {
-      .q-icon {
-        color: transparent;
-        background: linear-gradient(268.06deg, #27094E -10%, #CD0F0F 140%);
-        background-clip: text;
-      }
-    }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .q-btn {
-      font-family: 'JetBrains Bold';
-      font-size: 2rem;
-      color: #fff;
-      background: #27094E;
-      transition: box-shadow 0.3s ease-in;
-
-      &:hover {
-        box-shadow: 6px 6px 23px rgba(0, 0, 0, 0.4);
-      }
-    }
-
-    @media(max-width: 870px) {
-      div {
-        flex-direction: column-reverse;
-      }
-
-      .book {
-        flex-direction: column;
-      }
-    }
+@media (max-width: 850px) {
+  h4 {
+    font-size: 1rem;
+    letter-spacing: -2px;
   }
 
-  footer {
-    margin: 3rem 0 0;
-    height: 84px;
-    width: 100%;
-    background: #27094E;
+  .about {
+    width: 100vw;
+  }
 
-    a { 
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-    
-    .row {
-      max-width: 832px;
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+  .techs img {
+    margin: 0 8px 0 0;
+    width: 2.5rem;
   }
 }
 </style>
