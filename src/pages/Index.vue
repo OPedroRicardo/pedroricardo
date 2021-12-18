@@ -15,7 +15,7 @@ q-page-container(class="column items-center justify-between" style="height: 100v
           img(v-for="tech in learning" :src="tech.img" :title="tech.title" :alt="tech.title")
     img(src="astronauta.svg" class="astronauta" alt="Um astronauta, dando uma ideia de que estamos explorando o espaço.")
   .flex.flex-center
-    a(href="")
+    a(href="https://www.freelancer.com/u/opedroricardo")
       q-btn(label="Meus Freelas" color="primary" no-caps size="xl" class="q-ma-xl")
 </template>
 
