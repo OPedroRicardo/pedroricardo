@@ -2,9 +2,9 @@
 q-header(class="row items-top justify-center bg-dark")
   a(v-for="item in social" target="_blank" :href="item.link" :title="item.title").q-ma-md
     img(:src="item.img" :alt="item.title")
-q-page-container(class="column items-center justify-between" style="height: 100vh")
-  .row.items-center.justify-center
-    .column.justify-center.about
+q-page-container(class="column items-center justify-between no-wrap" style="height: 100vh")
+  main.row.items-center.justify-center
+    .column.justify-center.no-wrap.about
       about-me
       .row.items-center.justify-start.techs
         .q-mr-xl
@@ -84,8 +84,13 @@ a img {
     opacity: 0.4;
   }
 }
+
+main {
+  flex-wrap: nowrap;
+}
+
 .about {
-  width: 33%;
+  width: 45vw;
   height: 90%;
   margin: 0 10%;
 }
@@ -99,7 +104,7 @@ h4 {
 
 .astronauta {
   max-width: 577.96px;
-  width: 40%;
+  width: 40vw;
   animation: astronaut 40s linear infinite;
   z-index: 2;
 
@@ -151,6 +156,10 @@ h4 {
   h4 {
     font-size: 1rem;
     letter-spacing: -2px;
+  }
+
+  main {
+    flex-wrap: wrap;
   }
 
   .about {
